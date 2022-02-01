@@ -3,8 +3,12 @@ package ru.job4j.tracker.oop;
 public class Student {
     public static void main(String[] args) {
         Student petya = new Student();
-        petya.music();
-        petya.song();
+        int i = 0;
+        do {
+            petya.music();
+            petya.song();
+            i++;
+        } while (i != 3);
     }
 
     public void music() {
