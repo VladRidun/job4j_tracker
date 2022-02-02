@@ -31,19 +31,5 @@ public class Calculator {
         Calculator calculator = new Calculator();
         result = calculator.intsumAllOperation(10);
         System.out.println("intsumAllOperation = " + result);
-/*
-        result = one + two;
-        System.out.println(result);
-        one = 6;
-        result = one / two;
-        System.out.println(result);
-        one = 5;
-        result = one - two;
-        System.out.println(result);
-        one = two * 2;
-        result = one * two;
-        System.out.println(result);
-
-*/
     }
 }
