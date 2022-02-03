@@ -1,15 +1,15 @@
 package ru.job4j.oop;
 
 public class Max {
-    public static int max(int number1, int number2) {
-        return number1 > number2 ? number1 : number2;
+    public static int max(int fisrt, int second) {
+        return fisrt > second ? fisrt : second;
     }
 
-    public static int max(int number1, int number2, int number3) {
-        return max(number1, max(number2, number3));
+    public static int max(int fisrt, int second, int third) {
+        return max(fisrt, max(second, third));
     }
 
-    public static int max(int number1, int number2, int number3, int number4) {
-        return max(number4, max(number1, max(number2, number3)));
+    public static int max(int fisrt, int second, int third, int fourth) {
+        return max(fourth, max(fisrt, max(second, third)));
     }
 }
