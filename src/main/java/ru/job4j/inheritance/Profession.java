@@ -1,12 +1,17 @@
 package ru.job4j.inheritance;
 
-import java.util.Date;
-
 public class Profession {
     private String name;
     private String surname;
     private String education;
     private String birthday;
+
+    public Profession(String name, String surname, String education, String birthday) {
+        this.name = name;
+        this.surname = surname;
+        this.education = education;
+        this.birthday = birthday;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -40,10 +45,4 @@ public class Profession {
         return birthday;
     }
 
-    public Profession(String name, String surname, String education, String birthday) {
-        this.name = name;
-        this.surname = surname;
-        this.education = education;
-        this.birthday = birthday;
-    }
 }
