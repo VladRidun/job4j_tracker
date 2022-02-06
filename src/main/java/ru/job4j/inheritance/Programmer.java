@@ -1,7 +1,5 @@
 package ru.job4j.inheritance;
 
-import java.util.Date;
-
 public class Programmer extends Engineer {
     private String language;
 
@@ -11,6 +9,6 @@ public class Programmer extends Engineer {
     }
 
     public void toDo() {
-        System.out.println("I'm " + super.getName() + language + "programmer");
+        System.out.println("I'm " + super.getName() + "  " + language + "-программист");
     }
 }
