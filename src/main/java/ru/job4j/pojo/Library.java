@@ -12,13 +12,13 @@ public class Library {
         books[2] = book3;
         books[3] = book4;
 
-        System.out.println("\n");
+        System.out.println();
         System.out.println("Massive of books");
         for (Book book : books) {
             System.out.println(book.getName() + " - " + book.getcountPaiges() + " стр.");
         }
 
-        System.out.println("\n");
+        System.out.println();
         System.out.println("Replace  0 to 3 .");
         Book temp = books[0];
         books[0] = books[3];
@@ -27,7 +27,7 @@ public class Library {
             System.out.println(book.getName() + " - " + book.getcountPaiges() + " стр.");
         }
 
-        System.out.println("\n");
+        System.out.println();
         System.out.println("Output only CleanCode");
         for (Book book : books) {
             if ("Clean code".equals(book.getName())) {
