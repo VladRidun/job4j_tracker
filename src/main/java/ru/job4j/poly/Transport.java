@@ -4,7 +4,7 @@ public interface Transport {
 
     void toDrive();
 
-    void getPassengers(int number);
+    void getPassengers(int count);
 
     int toFuelUp(int countFuel, int price);
 }
