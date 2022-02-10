@@ -1,56 +1,115 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
-    /*
+
 public class StartUITest {
-
     @Test
-    public void whenCreateItem() {
-        Input in = new StubInput(
-                new String[] {"0", "Item name", "1"}
-        );
+    public void whenReplaceItemTestOutputIsSuccessfully() {
+        Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        UserAction[] actions = {
-                new CreateAction(),
-                new ExitAction()
+        Item one = tracker.add(new Item("test1"));
+        String replaceName = "New Test Name";
+        Input in = new StubInput(
+                new String[]{"0", String.valueOf(one.getId()), replaceName, "1"}
+        );
+        UserAction[] actions = new UserAction[]{
+                new EditItemAction(out),
+                new ExitAction(out)
         };
-        new StartUI().init(in, tracker, actions);
-        assertThat(tracker.findAll()[0].getName(), is("Item name"));
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString(), is(
+                "Menu:" + ln
+                        + "0. Edit item" + ln
+                        + "1. Exit" + ln
+                        + "=== Edit item ===" + ln
+                        + "Заявка изменена успешно." + ln
+                        + "Menu:" + ln
+                        + "0. Edit item" + ln
+                        + "1. Exit" + ln
+                        + "=== Exit programm ===" + ln
+        ));
     }
 
     @Test
-    public void whenReplaceItem() {
+    public void whenShowAllActionTestOutput() {
+        Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("Replaced item"));
-        String replacedName = "New item name";
-        Input in = new StubInput(
-                new String[] {"0", String.valueOf(item.getId()), replacedName, "1"}
+        Input in = new StubInput(new String[]{"0", "1"}
         );
-        UserAction[] actions = {
-                new EditItemAction(),
-                new ExitAction()
+        UserAction[] actions = new UserAction[]{
+                new ShowAllAction(out),
+                new ExitAction(out)
         };
-        new StartUI().init(in, tracker, actions);
-        assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString(), is(
+                "Menu:" + ln
+                        + "0. Show all items" + ln
+                        + "1. Exit" + ln
+                        + "=== Show all items ===" + ln
+                        + "Хранилище еще не содержит заявок" + ln
+                        + "Menu:" + ln
+                        + "0. Show all items" + ln
+                        + "1. Exit" + ln
+                        + "=== Exit programm ===" + ln
+        ));
     }
 
     @Test
-    public void whenDeleteItem() {
+    public void whenFindItemByNameActionTestOutput() {
+        Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("Deleted item"));
-        Input in = new StubInput(
-                new String[] {"0", String.valueOf(item.getId()), "1"}
+        String nameId = "test1";
+        Input in = new StubInput(new String[]{"0", nameId, "1"}
         );
-        UserAction[] actions = {
-                new DeleteItemAction(),
-                new ExitAction()
+        UserAction[] actions = new UserAction[]{
+                new FindItemByName(out),
+                new ExitAction(out)
         };
-        new StartUI().init(in, tracker, actions);
-        assertThat(tracker.findById(item.getId()), is(nullValue()));
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString(), is(
+                "Menu:" + ln
+                        + "0. Find item by name" + ln
+                        + "1. Exit" + ln
+                        + "=== Find item by name ===" + ln
+                        + "Заявки с именем: " + nameId + " не найдены." + ln
+                        + "Menu:" + ln
+                        + "0. Find item by name" + ln
+                        + "1. Exit" + ln
+                        + "=== Exit programm ===" + ln
+        ));
+    }
+
+    @Test
+    public void whenFindItemByIdActionTestOutput() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        int idItem = 1;
+        Input in = new StubInput(new String[]{"0", String.valueOf(idItem), "1"}
+        );
+        UserAction[] actions = new UserAction[]{
+                new FindItemByIdAction(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString(), is(
+                "Menu:" + ln
+                        + "0. Find item by id" + ln
+                        + "1. Exit" + ln
+                        + "=== Find item by id ===" + ln
+                        + "Заявка с введенным id: " + idItem + " не найдена." + ln
+                        + "Menu:" + ln
+                        + "0. Find item by id" + ln
+                        + "1. Exit" + ln
+                        + "=== Exit programm ===" + ln
+        ));
     }
 }
 
-     */
