@@ -198,7 +198,7 @@ public class StartUITest {
     public void whenInvalidExit() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                new String[]{"9", "0"}
+                new String[]{"8", "0"}
         );
         Tracker tracker = new Tracker();
         UserAction[] actions = new UserAction[]{
