@@ -60,8 +60,7 @@ public class Analyze {
                         .stream())
                 .collect(Collectors.
                         groupingBy(Subject::getName,
-                                LinkedHashMap::new,
-                                Collectors
+                                   Collectors
                                         .summingDouble(Subject::getScore)))
                 .entrySet()
                 .stream()
