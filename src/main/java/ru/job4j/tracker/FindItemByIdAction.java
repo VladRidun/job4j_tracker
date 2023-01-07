@@ -13,7 +13,7 @@ public class FindItemByIdAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Store tracker) {
         out.println("=== Find item by id ===");
         int id = input.askInt("Enter id: ");
         Item item = tracker.findById(id);
@@ -22,7 +22,6 @@ public class FindItemByIdAction implements UserAction {
         } else {
             out.println("Заявка с введенным id: " + id + " не найдена.");
         }
-
         return true;
     }
 }
