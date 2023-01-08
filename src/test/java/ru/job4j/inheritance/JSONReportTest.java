@@ -1,9 +1,9 @@
 package ru.job4j.inheritance;
 
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 public class JSONReportTest {
 
@@ -17,7 +17,7 @@ public class JSONReportTest {
         String name = "Report's name";
         String body = "Report's body";
         String result = new JSONReport().generate(name, body);
-        assertEquals(expected, result);
+        assertThat(expected, is(result));
     }
 
     @Test
@@ -30,6 +30,6 @@ public class JSONReportTest {
         String name = "David Gilmour";
         String body = "Shine On You Crazy Diamond";
         String result = new JSONReport().generate(name, body);
-        assertEquals(expected, result);
+        assertThat(expected, is(result));
     }
 }

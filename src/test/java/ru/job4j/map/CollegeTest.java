@@ -1,13 +1,14 @@
 package ru.job4j.map;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
 
 public class CollegeTest {
     @Test

@@ -1,9 +1,8 @@
 package ru.job4j.collection;
 
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
 
 public class PassportOfficeTest {
 
@@ -21,7 +20,7 @@ public class PassportOfficeTest {
         Citizen citizen2 = new Citizen("2f44a", "Petr Arsentev");
         PassportOffice office = new PassportOffice();
         office.add(citizen1);
-        assertFalse(office.add(citizen2));
+        assertThat(false, is(office.add(citizen2)));
     }
 
 }

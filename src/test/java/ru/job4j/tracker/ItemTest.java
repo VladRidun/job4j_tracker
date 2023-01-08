@@ -1,14 +1,13 @@
 package ru.job4j.tracker;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 public class ItemTest {
     @Test
     public void sortedByAsc() {
@@ -23,7 +22,7 @@ public class ItemTest {
                 new Item(3, "Second"),
                 new Item(1, "Third")
         );
-        assertThat(items, is(expected));
+        assertThat(items, equalTo(expected));
     }
 
     @Test
@@ -39,6 +38,6 @@ public class ItemTest {
                 new Item(3, "Second"),
                 new Item(2, "First")
         );
-        assertThat(items, is(expected));
+        assertThat(items, equalTo(expected));
     }
 }

@@ -1,11 +1,13 @@
 package ru.job4j.bank;
 
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
+import static org.hamcrest.MatcherAssert.assertThat;
 import java.util.Optional;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+
+
+import static org.hamcrest.Matchers.nullValue;
 
 public class BankServiceTest {
 
@@ -23,7 +25,8 @@ public class BankServiceTest {
         BankService bank = new BankService();
         bank.addUser(user.get());
         bank.addAccount(user.get().getPassport(), new Account("5546", 150D));
-        assertNull(bank.findByRequisite("34", "5546"));
+        Optional<Account> expect = (bank.findByRequisite("34", "5546"));
+        assertThat(null, is(expect));
     }
 
     @Test

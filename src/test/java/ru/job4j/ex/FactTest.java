@@ -1,11 +1,13 @@
 package ru.job4j.ex;
 
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class FactTest {
-    @Test(expected = IllegalArgumentException.class)
     public void whenFactGetMinusNumberAndFinish() {
-         new Fact().calc(-1);
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    new Fact().calc(-1);
+                });
     }
 }

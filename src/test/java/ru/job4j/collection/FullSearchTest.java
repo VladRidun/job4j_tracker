@@ -1,15 +1,12 @@
 package ru.job4j.collection;
 
-import junit.framework.TestCase;
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
+import static org.hamcrest.MatcherAssert.assertThat;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
 
 public class FullSearchTest {
 

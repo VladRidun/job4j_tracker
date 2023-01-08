@@ -1,11 +1,12 @@
 package ru.job4j.stream;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 public class MatrixToListTest {
     @Test
@@ -17,7 +18,7 @@ public class MatrixToListTest {
         };
         List<Integer> result = MatrixToList.convert(matrix);
         List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
-        assertEquals(expected, result);
+        assertThat(expected, is(result));
     }
 
     @Test
@@ -29,6 +30,6 @@ public class MatrixToListTest {
         };
         List<Integer> result = MatrixToList.convert(matrix);
         List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5, 6);
-        assertEquals(expected, result);
+        assertThat(expected, is(result));
     }
 }
