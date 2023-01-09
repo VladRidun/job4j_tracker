@@ -1,1 +1,0 @@
- alter table items add column checked BOOLEAN NOT NULL DEFAULT false;
