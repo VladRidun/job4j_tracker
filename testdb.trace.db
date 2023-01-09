@@ -90,3 +90,6 @@ Wrong user name or password [28000-214]
 2023-01-08 20:26:52 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: Нет данных
 No data is available [2000-214]
+2023-01-08 20:40:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Нет данных
+No data is available [2000-214]

@@ -98,14 +98,7 @@ public class SqlTracker implements Store {
     public List<Item> findAll() {
         List<Item> items = new ArrayList<>();
         try (PreparedStatement statement = cn.prepareStatement(SQL_FIND_ALL)) {
-            try (ResultSet resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    items.add(new Item(
-                            resultSet.getInt("id"),
-                            resultSet.getString("name")
-                    ));
-                }
-            }
+            items = getItems(statement);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -117,15 +110,24 @@ public class SqlTracker implements Store {
         List<Item> items = new ArrayList<>();
         try (PreparedStatement statement = cn.prepareStatement(SQL_FIND_BY_NAME)) {
             statement.setString(1, key);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    items.add(new Item(
-                            resultSet.getInt("id"),
-                            resultSet.getString("name")
-                    ));
-                }
-            }
+            items = getItems(statement);
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return items;
+    }
+
+    public List<Item> getItems(PreparedStatement statement) {
+        List<Item> items = new ArrayList<>();
+        PreparedStatement st = statement;
+        try (ResultSet resultSet = st.executeQuery()) {
+            while (resultSet.next()) {
+                items.add(new Item(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name")
+                ));
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return items;
@@ -137,7 +139,7 @@ public class SqlTracker implements Store {
         try (PreparedStatement statement = cn.prepareStatement(SQL_FIND_BY_ID)) {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
-                resultSet.next();
+                if (resultSet.next()) ;
                 item = new Item(
                         resultSet.getInt("id"),
                         resultSet.getString("name")
