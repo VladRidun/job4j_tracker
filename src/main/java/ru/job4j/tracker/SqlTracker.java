@@ -143,10 +143,9 @@ public class SqlTracker implements Store, AutoCloseable  {
     }
 
     private Item getPostFromResultSet(ResultSet resultSet) throws SQLException {
-        Item item = new Item();
-        item.setId(resultSet.getInt("id"));
-        item.setName(resultSet.getString("name"));
-        item.setCreated(resultSet.getTimestamp("created").toLocalDateTime());
-        return item;
+        return new Item(
+                resultSet.getInt("id"),
+                resultSet.getString("name"),
+                resultSet.getTimestamp("created").toLocalDateTime());
     }
 }
