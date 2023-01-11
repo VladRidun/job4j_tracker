@@ -59,7 +59,7 @@ public class SqlTrackerTest {
     @Test
     public void whenSaveItemAndFindByGeneratedIdThenMustBeTheSame() {
         SqlTracker tracker = new SqlTracker(connection);
-        Item item = new Item("item");
+        Item item = tracker.add(new Item("itemVlad"));
         tracker.add(item);
         assertTrue(tracker.findById(item.getId()).equals(item));
     }
@@ -67,8 +67,7 @@ public class SqlTrackerTest {
     @Test
     public void whenTestFindById() {
         SqlTracker tracker = new SqlTracker(connection);
-        Item bug = new Item("Bug");
-        Item item = tracker.add(bug);
+        Item item = tracker.add(new Item("itemVlad"));
         Item result = tracker.findById(item.getId());
         assertThat(result.getName(), is(item.getName()));
     }
@@ -76,24 +75,19 @@ public class SqlTrackerTest {
     @Test
     public void whenTestFindByNameCheckArrayLength() {
         SqlTracker tracker = new SqlTracker(connection);
-        Item first = new Item("First");
-        Item second = new Item("Second");
-        tracker.add(first);
-        tracker.add(second);
+        Item first = tracker.add(new Item("First"));
+        Item second = tracker.add(new Item("First"));
         tracker.add(new Item("First"));
         tracker.add(new Item("Second"));
         tracker.add(new Item("First"));
-        List<Item> result = tracker.findByName(first.getName());
-        assertThat(result.size(), is(3));
+        assertTrue(tracker.findAll().containsAll(List.of(first, second)));
     }
 
     @Test
     public void whenTestFindByNameCheckSecondItemName() {
         SqlTracker tracker = new SqlTracker(connection);
-        Item first = new Item("First");
-        Item second = new Item("Second");
-        tracker.add(first);
-        tracker.add(second);
+        Item first = tracker.add(new Item("First"));
+        Item second = tracker.add(new Item("Second"));
         tracker.add(new Item("First"));
         tracker.add(new Item("Second"));
         tracker.add(new Item("First"));

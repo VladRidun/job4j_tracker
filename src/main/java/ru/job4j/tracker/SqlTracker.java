@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class SqlTracker implements Store {
+public class SqlTracker implements Store, AutoCloseable  {
 
     private Connection cn;
     private static final String SQL_INSERT = "insert into items(name, created) values (?, ?)";
     private static final String SQL_DELETE = "delete from items where id = ?";
-    private static final String SQL_UPDATE = "update items set name = ? where id = ?";
+    private static final String SQL_UPDATE = "update items set name = ?, created = ? where id = ?";
     private static final String SQL_FIND_ALL = "select * from items";
     private static final String SQL_FIND_BY_NAME = "select * from items where name like ?";
     private static final String SQL_FIND_BY_ID = "select * from items where id = ?";
@@ -54,7 +54,7 @@ public class SqlTracker implements Store {
                      cn.prepareStatement(SQL_INSERT,
                              Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, item.getName());
-            statement.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
+            statement.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
             statement.execute();
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
@@ -73,7 +73,8 @@ public class SqlTracker implements Store {
         try (PreparedStatement statement =
                      cn.prepareStatement(SQL_UPDATE)) {
             statement.setString(1, item.getName());
-            statement.setInt(2, id);
+            statement.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
+            statement.setInt(3, id);
             result = statement.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
@@ -98,8 +99,12 @@ public class SqlTracker implements Store {
     public List<Item> findAll() {
         List<Item> items = new ArrayList<>();
         try (PreparedStatement statement = cn.prepareStatement(SQL_FIND_ALL)) {
-            items = getItems(statement);
-        } catch (Exception e) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                items.add(getPostFromResultSet(resultSet));
+            }
+        }
+    } catch (Exception e) {
             e.printStackTrace();
         }
         return items;
@@ -110,23 +115,12 @@ public class SqlTracker implements Store {
         List<Item> items = new ArrayList<>();
         try (PreparedStatement statement = cn.prepareStatement(SQL_FIND_BY_NAME)) {
             statement.setString(1, key);
-            items = getItems(statement);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return items;
-    }
-
-    public List<Item> getItems(PreparedStatement statement) {
-        List<Item> items = new ArrayList<>();
-        try (ResultSet resultSet = statement.executeQuery()) {
-            while (resultSet.next()) {
-                items.add(new Item(
-                        resultSet.getInt("id"),
-                        resultSet.getString("name")
-                ));
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    items.add(getPostFromResultSet(resultSet));
+                }
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return items;
@@ -139,15 +133,20 @@ public class SqlTracker implements Store {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    item = new Item(
-                            resultSet.getInt("id"),
-                            resultSet.getString("name")
-                    );
+                    item = getPostFromResultSet(resultSet);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return item;
+    }
+
+    private Item getPostFromResultSet(ResultSet resultSet) throws SQLException {
+        Item item = new Item();
+        item.setId(resultSet.getInt("id"));
+        item.setName(resultSet.getString("name"));
+        item.setCreated(resultSet.getTimestamp("created").toLocalDateTime());
         return item;
     }
 }
