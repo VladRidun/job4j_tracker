@@ -10,13 +10,13 @@ import java.util.Properties;
 
 public class SqlTracker implements Store, AutoCloseable  {
 
-    private Connection cn;
     private static final String SQL_INSERT = "insert into items(name, created) values (?, ?)";
     private static final String SQL_DELETE = "delete from items where id = ?";
     private static final String SQL_UPDATE = "update items set name = ?, created = ? where id = ?";
     private static final String SQL_FIND_ALL = "select * from items";
     private static final String SQL_FIND_BY_NAME = "select * from items where name like ?";
     private static final String SQL_FIND_BY_ID = "select * from items where id = ?";
+    private Connection cn;
 
     public SqlTracker() {
         init();
