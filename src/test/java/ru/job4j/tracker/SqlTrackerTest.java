@@ -90,23 +90,17 @@ public class SqlTrackerTest {
     @Test
     public void whenTestFindAll() {
         SqlTracker tracker = new SqlTracker(connection);
-        Item first = new Item("First");
-        Item second = new Item("Second");
-        tracker.add(first);
-        tracker.add(second);
-        Item result = tracker.findAll().get(0);
-        assertEquals(result.getName(), (first.getName()));
+        Item first = tracker.add(new Item("First"));
+        Item second = tracker.add(new Item("Second"));
+        assertEquals(List.of(first, second), tracker.findAll());
     }
 
     @Test
     public void whenReplace() {
         SqlTracker tracker = new SqlTracker(connection);
-        Item bug = new Item();
-        bug.setName("Bug");
-        tracker.add(bug);
+        Item bug = tracker.add(new Item("Bug"));
         int id = bug.getId();
-        Item bugWithDesc = new Item();
-        bugWithDesc.setName("Bug with description");
+        Item bugWithDesc = new Item("Bug with description");
         tracker.replace(id, bugWithDesc);
         assertEquals(tracker.findById(id).getName(), ("Bug with description"));
     }
@@ -114,9 +108,7 @@ public class SqlTrackerTest {
     @Test
     public void whenDelete() {
         SqlTracker tracker = new SqlTracker(connection);
-        Item bug = new Item();
-        bug.setName("Bug");
-        tracker.add(bug);
+        Item bug = tracker.add(new Item("Bug"));
         int id = bug.getId();
         tracker.delete(id);
         assertNull(tracker.findById(id));
