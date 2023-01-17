@@ -68,13 +68,11 @@ public class SqlTrackerTest {
     }
 
     @Test
-    public void whenTestFindByNameCheckArrayLength() {
+    public void whenTestFindByNameCheckArrayAsSame() {
         SqlTracker tracker = new SqlTracker(connection);
-        Item first = tracker.add(new Item("First"));
-        tracker.add(new Item("First"));
-        tracker.add(new Item("Second"));
-        tracker.add(new Item("First"));
-        assertEquals(3, tracker.findByName(first.getName()).size());
+        Item second1 = tracker.add(new Item("First"));
+        Item second2 = tracker.add(new Item("First"));
+        assertEquals(List.of(second1, second2), tracker.findByName(second1.getName()));
     }
 
     @Test
