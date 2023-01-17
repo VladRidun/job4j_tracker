@@ -4,8 +4,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import ru.job4j.tracker.Item;
-import ru.job4j.tracker.SqlTracker;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -13,15 +11,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Properties;
 
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.core.IsNull.nullValue;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SqlTrackerTest {
 
@@ -69,18 +64,17 @@ public class SqlTrackerTest {
         SqlTracker tracker = new SqlTracker(connection);
         Item item = tracker.add(new Item("itemVlad"));
         Item result = tracker.findById(item.getId());
-        assertThat(result.getName(), is(item.getName()));
+        assertEquals(result.getName(), (item.getName()));
     }
 
     @Test
     public void whenTestFindByNameCheckArrayLength() {
         SqlTracker tracker = new SqlTracker(connection);
         Item first = tracker.add(new Item("First"));
-        Item second = tracker.add(new Item("First"));
         tracker.add(new Item("First"));
         tracker.add(new Item("Second"));
         tracker.add(new Item("First"));
-        assertTrue(tracker.findAll().containsAll(List.of(first, second)));
+        assertEquals(3, tracker.findByName(first.getName()).size());
     }
 
     @Test
@@ -92,7 +86,7 @@ public class SqlTrackerTest {
         tracker.add(new Item("Second"));
         tracker.add(new Item("First"));
         List<Item> result = tracker.findByName(second.getName());
-        assertThat(result.get(1).getName(), is(second.getName()));
+        assertEquals(result.get(1).getName(), (second.getName()));
     }
 
     @Test
@@ -103,7 +97,7 @@ public class SqlTrackerTest {
         tracker.add(first);
         tracker.add(second);
         Item result = tracker.findAll().get(0);
-        assertThat(result.getName(), is(first.getName()));
+        assertEquals(result.getName(), (first.getName()));
     }
 
     @Test
@@ -116,7 +110,7 @@ public class SqlTrackerTest {
         Item bugWithDesc = new Item();
         bugWithDesc.setName("Bug with description");
         tracker.replace(id, bugWithDesc);
-        assertThat(tracker.findById(id).getName(), is("Bug with description"));
+        assertEquals(tracker.findById(id).getName(), ("Bug with description"));
     }
 
     @Test
@@ -127,6 +121,6 @@ public class SqlTrackerTest {
         tracker.add(bug);
         int id = bug.getId();
         tracker.delete(id);
-        assertThat(tracker.findById(id), is(nullValue()));
+        assertNull(tracker.findById(id));
     }
 }
