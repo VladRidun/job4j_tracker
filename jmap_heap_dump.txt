@@ -13,7 +13,7 @@ num     #instances         #bytes  class name (module)
    4:         13370         427840  java.util.HashMap$Node (java.base@17.0.1)
    5:          1509         316664  [C (java.base@17.0.1)
  и т.д.
-
+****************************************************************************************
 
 Запуск jmap  с ключом --heap 
 jhsdb jmap --heap --pid 27460

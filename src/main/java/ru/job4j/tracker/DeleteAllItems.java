@@ -26,4 +26,5 @@ public class DeleteAllItems implements UserAction {
         out.println("=== Все заявки удалены ===");
         return true;
     }
+
 }
