@@ -9,7 +9,6 @@ public class Menu {
     public static final int ADD_MANY_POST = 2;
     public static final int SHOW_ALL_POSTS = 3;
     public static final int DELETE_POST = 4;
-
     public static final String SELECT = "Выберите меню";
     public static final String COUNT = "Выберите количество создаваемых постов";
     public static final String TEXT_POSTS = "Введите текст";
