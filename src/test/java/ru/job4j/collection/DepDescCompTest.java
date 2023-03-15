@@ -37,6 +37,6 @@ public class DepDescCompTest {
                 "K1/SK1/SSK1",
                 "K2/SK1"
         );
-        assertThat(rsl).isLessThan(0);
+        assertThat(rsl).isGreaterThan(0);
     }
 }

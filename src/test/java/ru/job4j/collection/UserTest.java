@@ -17,7 +17,7 @@ public class UserTest {
         users.add(new User("Ivan", 31));
         Iterator<User> it = users.iterator();
         assertThat(it.next()).isEqualTo(new User("Ivan", 31));
-        assertThat(it.next()).isEqualTo(new User("Ivan", 32));
+        assertThat(it.next()).isEqualTo(new User("Petr", 32));
     }
 
     @Test

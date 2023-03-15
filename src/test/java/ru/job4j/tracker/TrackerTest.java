@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static net.bytebuddy.implementation.FixedValue.nullValue;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TrackerTest {
@@ -87,6 +86,6 @@ public class TrackerTest {
         tracker.add(bug);
         int id = bug.getId();
         tracker.delete(id);
-        assertThat(tracker.findById(id)).isEqualTo(nullValue());
+        assertThat(tracker.findById(id)).isEqualTo(null);
     }
 }
