@@ -5,9 +5,8 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
 public class ItemTest {
     @Test
     public void sortedByAsc() {
@@ -22,7 +21,7 @@ public class ItemTest {
                 new Item(3, "Second"),
                 new Item(1, "Third")
         );
-        assertThat(items, equalTo(expected));
+        assertThat(items).isEqualTo(expected);
     }
 
     @Test
@@ -38,6 +37,6 @@ public class ItemTest {
                 new Item(3, "Second"),
                 new Item(2, "First")
         );
-        assertThat(items, equalTo(expected));
+        assertThat(items).isEqualTo(expected);
     }
 }

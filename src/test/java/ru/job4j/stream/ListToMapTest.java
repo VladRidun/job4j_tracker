@@ -2,13 +2,12 @@ package ru.job4j.stream;
 
 import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ListToMapTest {
 
@@ -24,7 +23,7 @@ public class ListToMapTest {
         expected.put("Ivanov", new Student(30, "Ivanov"));
         expected.put("Petrov", new Student(40, "Petrov"));
         expected.put("Sidorov", new Student(50, "Sidorov"));
-        assertThat(expected, is(result));
+        assertThat(expected).isEqualTo(result);
     }
 
     @Test
@@ -41,6 +40,6 @@ public class ListToMapTest {
         expected.put("Ivanov", new Student(30, "Ivanov"));
         expected.put("Petrov", new Student(40, "Petrov"));
         expected.put("Sidorov", new Student(60, "Sidorov"));
-        assertThat(expected, is(result));
+        assertThat(expected).isEqualTo(result);
     }
 }

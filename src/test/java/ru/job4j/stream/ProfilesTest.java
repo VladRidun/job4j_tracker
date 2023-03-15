@@ -2,11 +2,10 @@ package ru.job4j.stream;
 
 import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-
 import java.util.Arrays;
 import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ProfilesTest {
 
@@ -22,6 +21,6 @@ public class ProfilesTest {
         );
         List<Address> result = Profiles.collect(profiles);
         List<Address> expected = Arrays.asList(first, second, third);
-        assertThat(expected, is(result));
+        assertThat(expected).isEqualTo(result);
     }
 }

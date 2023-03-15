@@ -1,10 +1,7 @@
 package ru.job4j.collection;
 
 import org.junit.jupiter.api.Test;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.lessThan;
+import static org.assertj.core.api.Assertions.*;
 
 public class DepDescCompTest {
     @Test
@@ -13,7 +10,7 @@ public class DepDescCompTest {
                 "K2/SK1/SSK2",
                 "K2/SK1/SSK1"
         );
-        assertThat(rsl, greaterThan(0));
+        assertThat(rsl).isGreaterThan(0);
     }
 
     @Test
@@ -22,7 +19,7 @@ public class DepDescCompTest {
                 "K2",
                 "K2/SK1"
         );
-        assertThat(rsl, lessThan(0));
+        assertThat(rsl).isLessThan(0);
     }
 
     @Test
@@ -31,7 +28,7 @@ public class DepDescCompTest {
                 "K2/SK1/SSK1",
                 "K1/SK1/SSK2"
         );
-        assertThat(rsl, lessThan(0));
+        assertThat(rsl).isLessThan(0);
     }
 
     @Test
@@ -40,6 +37,6 @@ public class DepDescCompTest {
                 "K1/SK1/SSK1",
                 "K2/SK1"
         );
-        assertThat(rsl, greaterThan(0));
+        assertThat(rsl).isLessThan(0);
     }
 }

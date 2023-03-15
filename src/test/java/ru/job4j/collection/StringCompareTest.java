@@ -2,59 +2,56 @@ package ru.job4j.collection;
 
 import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.lessThan;
-import static org.hamcrest.core.Is.is;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class StringCompareTest {
     @Test
     public void whenStringsAreEqualThenZero() {
-        StringCompare compare = new StringCompare();
-        int rst = compare.compare(
+        StringCompare comp = new StringCompare();
+        int rst = comp.compare(
                 "Ivanov",
                 "Ivanov"
         );
-        assertThat(rst, is(0));
+        assertThat(rst).isEqualTo(0);
     }
 
     @Test
     public void whenLeftLessThanRightResultShouldBeNegative() {
-        StringCompare compare = new StringCompare();
-        int rst = compare.compare(
+        StringCompare comp = new StringCompare();
+        int rst = comp.compare(
                 "Ivanov",
                 "Ivanova"
         );
-        assertThat(rst, lessThan(0));
+        assertThat(rst).isLessThan(0);
     }
 
     @Test
     public void whenLeftGreaterThanRightResultShouldBePositive() {
-        StringCompare compare = new StringCompare();
-        int rst = compare.compare(
+        StringCompare comp = new StringCompare();
+        int rst = comp.compare(
                 "Petrov",
                 "Ivanova"
         );
-        assertThat(rst, greaterThan(0));
+        assertThat(rst).isGreaterThan(0);
     }
 
     @Test
     public void secondCharOfLeftGreaterThanRightShouldBePositive() {
-        StringCompare compare = new StringCompare();
-        int rst = compare.compare(
+        StringCompare comp = new StringCompare();
+        int rst = comp.compare(
                 "Petrov",
                 "Patrov"
         );
-        assertThat(rst, greaterThan(0));
+        assertThat(rst).isGreaterThan(0);
     }
 
     @Test
     public void secondCharOfLeftLessThanRightShouldBeNegative() {
-        StringCompare compare = new StringCompare();
-        int rst = compare.compare(
+        StringCompare comp = new StringCompare();
+        int rst = comp.compare(
                 "Patrova",
                 "Petrov"
         );
-        assertThat(rst, lessThan(0));
+        assertThat(rst).isLessThan(0);
     }
 }

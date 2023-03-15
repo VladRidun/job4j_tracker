@@ -1,11 +1,8 @@
 package ru.job4j.collection;
 
 import org.junit.jupiter.api.Test;
-import static org.hamcrest.MatcherAssert.assertThat;
 import java.util.Comparator;
-
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.lessThan;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class JobTest {
 
@@ -16,7 +13,7 @@ public class JobTest {
                 new Job("Fix bug1", 2),
                 new Job("Fix bug", 1)
         );
-        assertThat(rsl, greaterThan(0));
+        assertThat(rsl).isGreaterThan(0);
     }
 
     @Test
@@ -26,7 +23,7 @@ public class JobTest {
                 new Job("Fix bug", 0),
                 new Job("Fix bug1", 1)
         );
-        assertThat(rsl, lessThan(0));
+        assertThat(rsl).isLessThan(0);
     }
 
     @Test
@@ -36,7 +33,7 @@ public class JobTest {
                 new Job("Write module", 3),
                 new Job("Fix bug", 2)
         );
-        assertThat(rsl, lessThan(0));
+        assertThat(rsl).isLessThan(0);
     }
 
     @Test
@@ -46,7 +43,7 @@ public class JobTest {
                 new Job("Fix bug", 4),
                 new Job("Fix bug1", 2)
         );
-        assertThat(rsl, lessThan(0));
+        assertThat(rsl).isLessThan(0);
     }
 
     @Test
@@ -56,7 +53,7 @@ public class JobTest {
                 new Job("Fix bug1", 2),
                 new Job("Fix bug", 1)
         );
-        assertThat(rsl, greaterThan(0));
+        assertThat(rsl).isGreaterThan(0);
     }
 
     @Test
@@ -66,7 +63,7 @@ public class JobTest {
                 new Job("Impl task", 0),
                 new Job("Fix bug", 1)
         );
-        assertThat(rsl, lessThan(0));
+        assertThat(rsl).isLessThan(0);
     }
 
     @Test
@@ -76,6 +73,6 @@ public class JobTest {
                 new Job("Fix bug", 2),
                 new Job("Fix bug", 1)
         );
-        assertThat(rsl, lessThan(0));
+        assertThat(rsl).isLessThan(0);
     }
 }

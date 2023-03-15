@@ -1,10 +1,8 @@
 package ru.job4j.oop;
 
+import org.assertj.core.data.Percentage;
 import org.junit.jupiter.api.Test;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.closeTo;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TriangleTest {
 
@@ -15,7 +13,7 @@ public class TriangleTest {
         Point c = new Point(0, 4);
         Triangle triangle = new Triangle(a, b, c);
         double rsl = triangle.area();
-        assertThat(rsl, closeTo(8, 0.001));
+        assertThat(rsl).isCloseTo(8, Percentage.withPercentage(0.001));
     }
 
     @Test
@@ -25,6 +23,6 @@ public class TriangleTest {
         Point c = new Point(0, 0);
         Triangle triangle = new Triangle(a, b, c);
         double rsl = triangle.area();
-        assertThat(rsl, closeTo(-1, 0.001));
+        assertThat(rsl).isCloseTo(-1, Percentage.withPercentage(0.001));
     }
 }

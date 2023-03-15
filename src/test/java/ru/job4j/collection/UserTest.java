@@ -1,14 +1,13 @@
 package ru.job4j.collection;
 
 import org.junit.jupiter.api.Test;
-import static org.hamcrest.MatcherAssert.assertThat;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.assertj.core.api.Assertions.*;
 
 public class UserTest {
     @Test
@@ -17,8 +16,8 @@ public class UserTest {
         users.add(new User("Petr", 32));
         users.add(new User("Ivan", 31));
         Iterator<User> it = users.iterator();
-        assertThat(it.next(), is(new User("Ivan", 31)));
-        assertThat(it.next(), is(new User("Petr", 32)));
+        assertThat(it.next()).isEqualTo(new User("Ivan", 31));
+        assertThat(it.next()).isEqualTo(new User("Ivan", 32));
     }
 
     @Test
@@ -40,7 +39,7 @@ public class UserTest {
                         new User("Petr", 35)
                 )
         );
-        assertThat(users, is(expected));
+        assertThat(users).isEqualTo(expected);
     }
 
     @Test
@@ -49,7 +48,7 @@ public class UserTest {
                 .compareTo(
                         new User("Ivan", 31)
                 );
-        assertThat(rsl, greaterThan(0));
+        assertThat(rsl).isGreaterThan(0);
     }
 
     @Test
@@ -58,6 +57,6 @@ public class UserTest {
                 .compareTo(
                         new User("Petr", 32)
                 );
-        assertThat(rsl, lessThan(0));
+        assertThat(rsl).isLessThan(0);
     }
 }

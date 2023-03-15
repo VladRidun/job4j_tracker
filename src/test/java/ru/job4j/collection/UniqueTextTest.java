@@ -2,8 +2,7 @@ package ru.job4j.collection;
 
 import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+import static org.assertj.core.api.Assertions.*;
 
 public class UniqueTextTest {
 
@@ -11,13 +10,13 @@ public class UniqueTextTest {
     public void isEquals() {
         String origin = "My cat eats a mouse and milk";
         String text = "My cat eats milk and a mouse";
-        assertThat(UniqueText.isEquals(origin, text), is(true));
+        assertThat(UniqueText.isEquals(origin, text)).isTrue();
     }
 
     @Test
     public void isNotEquals() {
         String origin = "My cat eats a mouse";
         String text = "A mouse is eaten by a cat";
-        assertThat(UniqueText.isEquals(origin, text), is(false));
+        assertThat(UniqueText.isEquals(origin, text)).isFalse();
     }
 }

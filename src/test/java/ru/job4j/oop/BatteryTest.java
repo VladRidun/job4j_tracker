@@ -1,11 +1,7 @@
 package ru.job4j.oop;
 
 import org.junit.jupiter.api.Test;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-
+import static org.assertj.core.api.Assertions.assertThat;
 public class BatteryTest {
 
     @Test
@@ -14,7 +10,7 @@ public class BatteryTest {
         Battery another = new Battery(50);
         charger.exchange(another);
         int expected = 80;
-        assertThat(expected, is(another.getLoad()));
+        assertThat(expected).isEqualTo(another.getLoad());
     }
 
     @Test
@@ -23,7 +19,7 @@ public class BatteryTest {
         Battery another = new Battery(20);
         charger.exchange(another);
         int expected = 0;
-        assertThat(expected, is(charger.getLoad()));
+        assertThat(expected).isEqualTo(charger.getLoad());
     }
 
     @Test
@@ -32,6 +28,6 @@ public class BatteryTest {
         Battery another = new Battery(0);
         charger.exchange(another);
         int expected = 95;
-        assertThat(expected, is(another.getLoad()));
+        assertThat(expected).isEqualTo(another.getLoad());
     }
 }
