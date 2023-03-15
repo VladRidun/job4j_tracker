@@ -37,6 +37,5 @@ class MaxMinTest {
         List<Integer> emptyList = new ArrayList<>();
         assertThat(maxMin.min(emptyList, comparator)).isNull();
     }
-
 }
 
