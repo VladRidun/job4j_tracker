@@ -2,24 +2,21 @@ package ru.job4j.kiss;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Predicate;
+import java.util.function.IntPredicate;
 
 public class MaxMin {
     public <T> T max(List<T> values, Comparator<T> comparator) {
-        return null;
+        return maxMin(values, comparator, (i -> i > 0));
     }
 
     public <T> T min(List<T> values, Comparator<T> comparator) {
-        return null;
+        return maxMin(values, comparator, (i -> i < 0));
     }
 
-    public static <T> T maxMin(List<T> values, Predicate<T> predicate) {
-        if (values.isEmpty()) {
-            return null;
-        }
-        T rsl = values.get(0);
+    public static <T> T maxMin(List<T> values, Comparator<T> comparator, IntPredicate predicate) {
+        T rsl = values.isEmpty() ? null : values.get(0);
         for (T value : values) {
-            if (predicate.test(value)) {
+            if (predicate.test(comparator.compare(value, rsl))) {
                 rsl = value;
             }
         }
