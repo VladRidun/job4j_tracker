@@ -43,4 +43,5 @@ class GeneratorFirstTest {
         assertThatThrownBy(() -> generator.produce(template, args)).
                 isInstanceOf(IllegalArgumentException.class);
     }
+
 }

@@ -7,4 +7,5 @@ public class GeneratorFirst implements Generator {
     public String produce(String template, Map<String, String> args) {
         return null;
     }
+
 }
