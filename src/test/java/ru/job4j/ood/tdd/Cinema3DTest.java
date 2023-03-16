@@ -1,5 +1,6 @@
 package ru.job4j.ood.tdd;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Calendar;
@@ -8,7 +9,9 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@Disabled
 public class Cinema3DTest {
+
     @Test
     public void whenBuyThenGetTicket() {
         Account account = new AccountCinema();

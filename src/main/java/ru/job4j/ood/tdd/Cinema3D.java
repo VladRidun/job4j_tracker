@@ -17,6 +17,5 @@ public class Cinema3D implements Cinema {
 
     @Override
     public void add(Session session) {
-
     }
 }
