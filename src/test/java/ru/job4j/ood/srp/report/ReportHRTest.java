@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import ru.job4j.ood.srp.model.Employee;
 import ru.job4j.ood.srp.store.MemStore;
 
+import javax.xml.bind.JAXBException;
 import java.util.Calendar;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ReportHRTest {
     @Test
-    public void whenHRGenerated() {
+    public void whenHRGenerated() throws JAXBException {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         List<Employee> workerListInput = List.of(

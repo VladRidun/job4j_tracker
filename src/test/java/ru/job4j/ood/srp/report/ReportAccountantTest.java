@@ -7,6 +7,7 @@ import ru.job4j.ood.srp.formatter.ReportDateTimeParser;
 import ru.job4j.ood.srp.model.Employee;
 import ru.job4j.ood.srp.store.MemStore;
 
+import javax.xml.bind.JAXBException;
 import java.util.Calendar;
 
 import static org.assertj.core.api.Assertions.*;
@@ -15,7 +16,7 @@ import static ru.job4j.ood.srp.currency.Currency.*;
 class ReportAccountantTest {
 
     @Test
-    public void whenBuhGenerated() {
+    public void whenBuhGenerated() throws JAXBException {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Vlad", now, now, 5);
