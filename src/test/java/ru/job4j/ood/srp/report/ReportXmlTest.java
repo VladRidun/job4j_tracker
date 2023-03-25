@@ -21,7 +21,7 @@ class ReportXmlTest {
         DateTimeParser<Calendar> parser = new ReportDateTimeParser();
         String date = parser.parse(now);
         store.add(worker);
-        Report engine = new ReportXml(store, parser);
+        Report engine = new ReportXml(store);
         String expect = String.format("""
                 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
                 <employees>

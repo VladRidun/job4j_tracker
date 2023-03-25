@@ -22,7 +22,7 @@ class ReportJsonTest {
         String date = parser.parse(now);
         store.add(worker1);
         store.add(worker2);
-        Report engine = new ReportJson(store, parser);
+        Report engine = new ReportJson(store);
         String expect = String.format("""
                         [{"fired":"%s","name":"Ivan","hired":"%s","salary":180},{"fired":"%s","name":"Vlad","hired":"%s","salary":120}]""",
                 date, date, date, date);
