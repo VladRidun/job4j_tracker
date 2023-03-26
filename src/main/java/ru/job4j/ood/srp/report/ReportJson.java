@@ -13,7 +13,7 @@ import java.util.function.Predicate;
 public class ReportJson implements Report {
     private final MemStore store;
     private final DateTimeParser<Calendar> dateTimeParser;
-    JSONArray jsonArray;
+    private final JSONArray jsonArray;
 
     public ReportJson(MemStore store) {
         this.store = store;
