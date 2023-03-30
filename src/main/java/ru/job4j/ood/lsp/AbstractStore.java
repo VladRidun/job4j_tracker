@@ -1,24 +1,25 @@
 package ru.job4j.ood.lsp;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class AbstractStore implements Store {
+public abstract class AbstractStore implements Store {
     private final List<Food> foods = new ArrayList<>();
 
     @Override
-    public Food add(Food food) {
+    public void add(Food food) {
         foods.add(food);
-        return food;
     }
 
     @Override
     public boolean delete(String key) {
         boolean rsl = false;
-        for (Food food : foods) {
+        Iterator<Food> iterator = foods.iterator();
+        while (iterator.hasNext()) {
+            Food food = iterator.next();
             if (key.equals(food.getName())) {
-                foods.remove(food);
-                rsl = true;
+                iterator.remove();
             }
         }
         return rsl;
@@ -30,18 +31,24 @@ public class AbstractStore implements Store {
     }
 
     @Override
-    public List<Food> findByName(String key) {
-        List<Food> rsl = new ArrayList<>();
+    public Food findByName(String key) {
+        Food rsl = null;
         for (Food food : foods) {
             if (key.equals(food.getName())) {
-                rsl.add(food);
+                rsl = food;
             }
         }
         return rsl;
     }
 
     @Override
+    public boolean accept(Food food) {
+        return false;
+    }
+
+    @Override
     public void close() throws Exception {
 
     }
+
 }
