@@ -1,16 +1,14 @@
 package ru.job4j.ood.lsp.park;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-@Disabled
 class ParkServiceTest {
 
     @Test
-    public void whenCarAdded() {
+    public void whenCarAdded() throws Exception {
         Vehicle vehicleCar = new Vehicle(1, "Car");
         Parking parking = new Parking(4, 1);
         ParkService parkService = new ParkService();
@@ -19,7 +17,7 @@ class ParkServiceTest {
     }
 
     @Test
-    public void whenTruckAdded() {
+    public void whenTruckAdded() throws Parking.ParkingException {
         Vehicle vehicleTruck = new Vehicle(2, "Truck");
         Parking parking = new Parking(1, 3);
         ParkService parkService = new ParkService();
@@ -28,7 +26,7 @@ class ParkServiceTest {
     }
 
     @Test
-    public void whenAddCarSize1() {
+    public void whenAddCarSize1() throws Parking.ParkingException {
         Vehicle vehicleCar = new Vehicle(1, "Car");
         Parking parking = new Parking(10, 10);
         ParkService parkService = new ParkService();
@@ -37,7 +35,7 @@ class ParkServiceTest {
     }
 
     @Test
-    public void whenAddTruckSize2() {
+    public void whenAddTruckSize2() throws Parking.ParkingException {
         Vehicle vehicleTruck = new Vehicle(2, "Truck");
         Parking parking = new Parking(10, 10);
         ParkService parkService = new ParkService();
@@ -47,19 +45,20 @@ class ParkServiceTest {
 
     @Test
     public void whenAddCarSizeNull() {
-        assertThatThrownBy(() -> new Vehicle(0, "Car")).
-                isInstanceOf(IllegalArgumentException.class);
+        Vehicle vehicleCar1 = new Vehicle(0, "Car1");
+        Parking parking = new Parking(1, 1);
+        ParkService parkService = new ParkService();
+        assertThatThrownBy(() -> parkService.park(parking, vehicleCar1)).
+                isInstanceOf(Parking.ParkingException.class);
     }
 
     @Test
     public void whenNotAddCar() {
         Vehicle vehicleCar1 = new Vehicle(1, "Car1");
-        Vehicle vehicleCar2 = new Vehicle(1, "Car2");
-        Parking parking = new Parking(1, 1);
+        Parking parking = new Parking(0, 0);
         ParkService parkService = new ParkService();
-        parkService.park(parking, vehicleCar1);
-        var expResult = "На стоянке нет места.\n";
-        assertEquals(expResult, (parkService.park(parking, vehicleCar2)));
+        assertThatThrownBy(() -> parkService.park(parking, vehicleCar1)).
+                isInstanceOf(Parking.ParkingException.class);
     }
 
     @Test
@@ -67,16 +66,16 @@ class ParkServiceTest {
         Vehicle vehicleTruck = new Vehicle(3, "Truck");
         Parking parking = new Parking(1, 1);
         ParkService parkService = new ParkService();
-        var expResult = "На стоянке нет места.\n";
-        assertEquals(expResult, (parkService.park(parking, vehicleTruck)));
+        assertThatThrownBy(() -> parkService.park(parking, vehicleTruck)).
+                isInstanceOf(Parking.ParkingException.class);
     }
 
     @Test
-    public void whenAddTruckWhenTruckPackingIsFull() {
+    public void whenAddTruckWhenTruckPackingIsFull() throws Parking.ParkingException {
         Vehicle vehicleCar = new Vehicle(4, "Truck");
         Parking parking = new Parking(10, 1);
         ParkService parkService = new ParkService();
         parkService.park(parking, vehicleCar);
-        assertThat(vehicleCar.getSize()).isEqualTo(parking.find("Truck").getSize());
+        assertThat(vehicleCar.getCarName()).isEqualTo(parking.find("Truck").getCarName());
     }
 }
