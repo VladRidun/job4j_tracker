@@ -10,13 +10,12 @@ public class SimpleMenu implements Menu {
         Optional<ItemInfo> itemFounded = findItem(parentName);
         var rsl = false;
         if (itemFounded.isEmpty()) {
-            rootElements.add(new SimpleMenuItem(childName, actionDelegate));
-            rsl = true;
-            }
+            rsl = rootElements.add(new SimpleMenuItem(childName, actionDelegate));
+        }
         if (itemFounded.isPresent()) {
-            itemFounded.get().menuItem.getChildren().add(new SimpleMenuItem(childName, actionDelegate) {
+            rsl = itemFounded.get().menuItem.getChildren().add(new SimpleMenuItem(childName, actionDelegate) {
             });
-            rsl = true;
+
         }
         return rsl;
     }
@@ -33,7 +32,20 @@ public class SimpleMenu implements Menu {
 
     @Override
     public Iterator<MenuItemInfo> iterator() {
-return null;
+        return new Iterator<>() {
+            DFSIterator dfsIterator = new DFSIterator();
+
+            @Override
+            public boolean hasNext() {
+                return dfsIterator.hasNext();
+            }
+
+            @Override
+            public MenuItemInfo next() {
+                ItemInfo itemInfo = dfsIterator.next();
+                return new MenuItemInfo(itemInfo.menuItem, itemInfo.number);
+            }
+        };
     }
 
     private Optional<ItemInfo> findItem(String name) {
@@ -41,10 +53,11 @@ return null;
         DFSIterator dfsIterator = new DFSIterator();
         while (dfsIterator.hasNext()) {
             ItemInfo itemInfo = dfsIterator.next();
-            if (itemInfo.menuItem.getName().equals(name)) {
-                rsl = Optional.of(itemInfo);
-            } else {
+            if (Objects.equals(name, null)) {
                 rsl = Optional.empty();
+            } else if (name.equals(itemInfo.menuItem.getName())) {
+                rsl = Optional.of(itemInfo);
+                break;
             }
         }
         return rsl;
@@ -52,9 +65,9 @@ return null;
 
     private static class SimpleMenuItem implements MenuItem {
 
-        private String name;
-        private List<MenuItem> children = new ArrayList<>();
-        private ActionDelegate actionDelegate;
+        private final String name;
+        private final  List<MenuItem> children = new ArrayList<>();
+        private final ActionDelegate actionDelegate;
 
         public SimpleMenuItem(String name, ActionDelegate actionDelegate) {
             this.name = name;
@@ -111,6 +124,7 @@ return null;
             }
             return new ItemInfo(current, lastNumber);
         }
+
     }
 
     private class ItemInfo {
