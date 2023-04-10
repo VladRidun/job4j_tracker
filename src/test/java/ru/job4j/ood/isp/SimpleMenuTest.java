@@ -28,6 +28,8 @@ public class SimpleMenuTest {
         assertThat(new Menu.MenuItemInfo(
                 "Покормить собаку", List.of(), STUB_ACTION, "2."))
                 .isEqualTo(menu.select("Покормить собаку").get());
+        assertThat(menu.select("Item not add").orElse(null))
+                .isNull();
         menu.forEach(i -> System.out.println(i.getNumber() + i.getName()));
     }
 }
