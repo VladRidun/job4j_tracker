@@ -1,6 +1,7 @@
 package ru.job4j.ood.lsp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ControlQuality {
@@ -8,10 +9,24 @@ public class ControlQuality {
     public ControlQuality() {
     }
 
-    public void resort(List<AbstractStore> stores, Food food) {
+    public void sort(List<AbstractStore> stores, Food food) {
         for (AbstractStore store : stores) {
             if (store.accept(food)) {
                 store.add(food);
+            }
+        }
+    }
+
+    public void resort(List<AbstractStore> stores) {
+        List<Food> foodList = new ArrayList<>();
+        for (AbstractStore store : stores) {
+            foodList.addAll(store.findAll());
+        }
+        for (Food food : foodList) {
+            for (AbstractStore store : stores) {
+                if (store.accept(food)) {
+                    store.add(food);
+                }
             }
         }
     }
@@ -24,8 +39,9 @@ public class ControlQuality {
         AbstractStore wareHouse = new Warehouse();
         AbstractStore trash = new Trash();
         List<AbstractStore> stores = List.of(wareHouse, shop, trash);
-        controlQuality.resort(stores, food);
-        controlQuality.resort(stores, food1);
+        controlQuality.sort(stores, food);
+        controlQuality.sort(stores, food1);
+        controlQuality.resort(stores);
         System.out.println(wareHouse.findByName("Cheese"));
     }
 }

@@ -18,8 +18,8 @@ class ControlQualityTest {
         AbstractStore wareHouse = new Warehouse();
         AbstractStore trash = new Trash();
         List<AbstractStore> stores = List.of(wareHouse, shop, trash);
-        controlQuality.resort(stores, food);
-        controlQuality.resort(stores, food1);
+        controlQuality.sort(stores, food);
+        controlQuality.sort(stores, food1);
         System.out.println(shop.findByName("Milk"));
         assertThat(food).isEqualTo(shop.findByName("Milk"));
     }
@@ -33,8 +33,8 @@ class ControlQualityTest {
         AbstractStore wareHouse = new Warehouse();
         AbstractStore trash = new Trash();
         List<AbstractStore> stores = List.of(wareHouse, shop, trash);
-        controlQuality.resort(stores, food);
-        controlQuality.resort(stores, food1);
+        controlQuality.sort(stores, food);
+        controlQuality.sort(stores, food1);
         assertThat(food).isNotEqualTo(shop.findByName("Cheese"));
     }
 
@@ -48,8 +48,8 @@ class ControlQualityTest {
         AbstractStore wareHouse = new Warehouse();
         AbstractStore trash = new Trash();
         List<AbstractStore> stores = List.of(wareHouse, shop, trash);
-        controlQuality.resort(stores, food);
-        controlQuality.resort(stores, food1);
+        controlQuality.sort(stores, food);
+        controlQuality.sort(stores, food1);
         assertThat(food3).isEqualTo(shop.findByName("Milk"));
     }
 
@@ -62,8 +62,8 @@ class ControlQualityTest {
         AbstractStore wareHouse = new Warehouse();
         AbstractStore trash = new Trash();
         List<AbstractStore> stores = List.of(wareHouse, shop, trash);
-        controlQuality.resort(stores, food);
-        controlQuality.resort(stores, food1);
+        controlQuality.sort(stores, food);
+        controlQuality.sort(stores, food1);
         assertThat(food).isEqualTo(wareHouse.findByName("Milk"));
     }
 
@@ -76,8 +76,8 @@ class ControlQualityTest {
         AbstractStore wareHouse = new Warehouse();
         AbstractStore trash = new Trash();
         List<AbstractStore> stores = List.of(wareHouse, shop, trash);
-        controlQuality.resort(stores, food);
-        controlQuality.resort(stores, food1);
+        controlQuality.sort(stores, food);
+        controlQuality.sort(stores, food1);
         assertThat(food).isNotEqualTo(wareHouse.findByName("Cheese"));
     }
 
@@ -90,8 +90,8 @@ class ControlQualityTest {
         AbstractStore wareHouse = new Warehouse();
         AbstractStore trash = new Trash();
         List<AbstractStore> stores = List.of(wareHouse, shop, trash);
-        controlQuality.resort(stores, food);
-        controlQuality.resort(stores, food1);
+        controlQuality.sort(stores, food);
+        controlQuality.sort(stores, food1);
         assertThat(food).isEqualTo(trash.findByName("Milk"));
     }
 
@@ -104,8 +104,8 @@ class ControlQualityTest {
         AbstractStore wareHouse = new Warehouse();
         AbstractStore trash = new Trash();
         List<AbstractStore> stores = List.of(wareHouse, shop, trash);
-        controlQuality.resort(stores, food);
-        controlQuality.resort(stores, food1);
+        controlQuality.sort(stores, food);
+        controlQuality.sort(stores, food1);
         assertThat(food).isNotEqualTo(trash.findByName("Cheese"));
     }
 
