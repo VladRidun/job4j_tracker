@@ -19,7 +19,7 @@ public class AddToParentAction implements UserAction {
         String parentName = input.askStr("Enter name of parent item: ");
         boolean result = menu.add(parentName, name, TodoApp.DEFAULT_ACTION);
         if (!result) {
-            out.println("Parent item not found. Item is not added.");
+            out.println("Item is exist. Enter Item with new name");
         } else {
             out.println("Item is added.");
         }

@@ -7,9 +7,18 @@ public class SimpleMenu implements Menu {
 
     @Override
     public boolean add(String parentName, String childName, ActionDelegate actionDelegate) {
-        Optional<ItemInfo> itemFounded = findItem(parentName);
-        return itemFounded.isEmpty() ? rootElements.add(new SimpleMenuItem(childName, actionDelegate))
-                : itemFounded.get().menuItem.getChildren().add(new SimpleMenuItem(childName, actionDelegate));
+        Optional<ItemInfo> itemPFounded = findItem(parentName);
+        Optional<ItemInfo> itemCFounded = findItem(childName);
+        boolean rsl = false;
+        if (itemCFounded.isPresent()) {
+            return rsl;
+        }
+        if (itemPFounded.isEmpty()) {
+            rsl = rootElements.add(new SimpleMenuItem(childName, actionDelegate));
+        } else if (itemPFounded.isPresent() && itemCFounded.isEmpty()) {
+           rsl = itemPFounded.get().menuItem.getChildren().add(new SimpleMenuItem(childName, actionDelegate));
+        }
+        return rsl;
     }
 
     @Override
