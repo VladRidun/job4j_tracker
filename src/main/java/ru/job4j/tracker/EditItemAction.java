@@ -16,12 +16,12 @@ public class EditItemAction implements UserAction {
     public boolean execute(Input input, Store tracker) {
         out.println("=== Edit item ===");
         int id = input.askInt("Enter id: ");
-        String name = input.askStr("Enter name: ");
+        String name = input.askStr("Enter new name for item: ");
         Item item = new Item(name);
         if (tracker.replace(id, item)) {
             out.println("Заявка изменена успешно.");
         } else {
-            out.println("Ошибка замены заявки.");
+            out.println(String.format("Item with id=%s not found.", id));
         }
         return true;
     }

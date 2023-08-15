@@ -54,11 +54,9 @@ public class Item implements Comparable<Item> {
 
     @Override
     public String toString() {
-        return "Item{"
-                + "id=" + id
+        return "id=" + id
                 + ", name='" + name + '\''
-                + ", created=" + created.format(FORMATTER)
-                + '}';
+                + ", created=" + created.format(FORMATTER);
     }
 
     @Override
