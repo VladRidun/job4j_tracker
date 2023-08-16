@@ -2,6 +2,7 @@ package ru.job4j.ood.lsp;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 public class Food {
@@ -16,8 +17,8 @@ public class Food {
 
     public Food(String name, LocalDateTime createDate, LocalDateTime expiryDate, double price, double discount) {
         this.name = name;
-        this.createDate = createDate;
-        this.expiryDate = expiryDate;
+        this.createDate = createDate.truncatedTo(ChronoUnit.MINUTES);
+        this.expiryDate = expiryDate.truncatedTo(ChronoUnit.MINUTES);
         this.price = price;
         this.discount = discount;
     }

@@ -3,8 +3,10 @@ package ru.job4j.ood.lsp;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+import static java.time.LocalDateTime.now;
 import static org.assertj.core.api.Assertions.*;
 
 class ControlQualityTest {
@@ -41,9 +43,11 @@ class ControlQualityTest {
     @Test
     void asserThatAddProductIntoShopWhenPercentsMore75AndGetDiscount() {
         ControlQuality controlQuality = new ControlQuality();
+        var creationDate = now().truncatedTo(ChronoUnit.MINUTES);
+        var expiredDate = now().truncatedTo(ChronoUnit.MINUTES);
         Food food = new Food("Milk", LocalDateTime.now().minusDays(6), LocalDateTime.now().plusMonths(1), 100.0, 10);
         Food food1 = new Food("Cheese", LocalDateTime.now().minusDays(6), LocalDateTime.now().plusDays(1), 100.0, 10);
-        Food food3 = new Food("Milk", LocalDateTime.now().minusDays(6), LocalDateTime.now().plusMonths(1), 90.0, 10);
+        Food food3 = new Food("Milk", creationDate.minusDays(6), expiredDate.plusMonths(1), 90.0, 10);
         AbstractStore shop = new Shop();
         AbstractStore wareHouse = new Warehouse();
         AbstractStore trash = new Trash();
