@@ -20,7 +20,7 @@ class WarehouseTest {
 
     @Test
     void asserThatProductNotAccept() {
-        Food food = new Food("Cheese", LocalDateTime.now().minusDays(2), LocalDateTime.now().plusDays(1), 100.0, 10);
+        Food food = new Food("Cheese", LocalDateTime.now().minusDays(9), LocalDateTime.now(), 100.0, 10);
         AbstractStore wareHouse = new Shop();
         wareHouse.add(food);
         assertThat(wareHouse.accept(food)).isFalse();
