@@ -2,8 +2,6 @@ package ru.job4j.tracker;
 
 import org.junit.jupiter.api.Test;
 
-import java.time.format.DateTimeFormatter;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -84,12 +82,10 @@ public class MemTrackerMockTest {
         Store tracker = new MemTracker();
         Item item = new Item("Item");
         Item addedItem = tracker.add(item);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
         UserAction findIdAction = new FindItemByIdAction(out);
         Input input = mock(Input.class);
         when(input.askInt(any(String.class))).thenReturn(1);
         findIdAction.execute(input, tracker);
-        var date = item.getCreated();
         String ln = System.lineSeparator();
         assertThat(out.toString()).isEqualTo("=== Find item by id ==="
                 + ln + addedItem + ln);
@@ -114,12 +110,10 @@ public class MemTrackerMockTest {
         Store tracker = new MemTracker();
         Item item = new Item("Item");
         Item addedItem = tracker.add(item);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
         UserAction findNameAction = new FindItemByName(out);
         Input input = mock(Input.class);
         when(input.askStr(any(String.class))).thenReturn("Item");
         findNameAction.execute(input, tracker);
-        var date = item.getCreated();
         String ln = System.lineSeparator();
         assertThat(out.toString()).isEqualTo("=== Find item by name ==="
                 + ln + addedItem + ln);
