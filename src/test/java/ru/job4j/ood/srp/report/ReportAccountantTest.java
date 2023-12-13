@@ -1,5 +1,6 @@
 package ru.job4j.ood.srp.report;
 
+import jakarta.xml.bind.JAXBException;
 import org.junit.jupiter.api.Test;
 import ru.job4j.ood.srp.currency.InMemoryCurrencyConverter;
 import ru.job4j.ood.srp.formatter.DateTimeParser;
@@ -7,11 +8,11 @@ import ru.job4j.ood.srp.formatter.ReportDateTimeParser;
 import ru.job4j.ood.srp.model.Employee;
 import ru.job4j.ood.srp.store.MemStore;
 
-import javax.xml.bind.JAXBException;
 import java.util.Calendar;
 
-import static org.assertj.core.api.Assertions.*;
-import static ru.job4j.ood.srp.currency.Currency.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static ru.job4j.ood.srp.currency.Currency.RUB;
+import static ru.job4j.ood.srp.currency.Currency.USD;
 
 class ReportAccountantTest {
 
