@@ -1,12 +1,12 @@
 package ru.job4j.ood.srp.report;
 
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Marshaller;
 import ru.job4j.ood.srp.model.Employee;
 import ru.job4j.ood.srp.model.Employees;
 import ru.job4j.ood.srp.store.MemStore;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.function.Predicate;

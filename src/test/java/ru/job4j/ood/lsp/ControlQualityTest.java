@@ -1,13 +1,11 @@
 package ru.job4j.ood.lsp;
 
 import org.junit.jupiter.api.Test;
-
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-
 import static java.time.LocalDateTime.now;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class ControlQualityTest {
 

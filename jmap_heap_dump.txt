@@ -270,8 +270,7 @@ Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:413)
 	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:190)
 	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:134)
-	at ru.job4j.tracker.SqlTracker.findAll(SqlTracker.java:102)
-	at ru.job4j.tracker.DeleteAllItems.execute(DeleteAllItems.java:20)
+	at ru.job4j.tracker.actions.DeleteAllItems.execute(DeleteAllItems.java:20)
 	at ru.job4j.tracker.StartUI.init(StartUI.java:22)
 	at ru.job4j.tracker.StartUI.main(StartUI.java:48)
 
