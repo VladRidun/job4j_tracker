@@ -1,4 +1,4 @@
-package ru.job4j.tracker.item;
+package ru.job4j.tracker.model;
 
 import java.util.Comparator;
 
