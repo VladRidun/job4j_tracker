@@ -13,10 +13,10 @@ import java.util.List;
 
 public class HbmTracker implements Store, AutoCloseable {
 
-    private static final String HQL_DELETE = "DELETE Item where id = ?";
+    private static final String HQL_DELETE = "DELETE Item where id = :fId";
     private static final String HQL_UPDATE = "UPDATE Item set name = :fName, created = :fCreated where id = :fId";
     private static final String HQL_FIND_ALL = "FROM Item";
-    private static final String HQL_FIND_BY_NAME = "FROM Item where name like ?";
+    private static final String HQL_FIND_BY_NAME = "FROM Item where name like :fName";
     private static final String HQL_FIND_BY_ID = "FROM Item where id = :fId";
 
     private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -48,7 +48,7 @@ public class HbmTracker implements Store, AutoCloseable {
             Query query = session.createQuery(HQL_UPDATE);
             result = query.setParameter("fName", item.getName())
                     .setParameter("fCreated", item.getCreated())
-                    .setParameter("fId", item.getId())
+                    .setParameter("fId", id)
                     .executeUpdate() > 0;
             session.getTransaction().commit();
         } catch (Exception e) {
