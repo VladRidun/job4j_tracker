@@ -1,12 +1,6 @@
 package ru.job4j.tracker;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
 import ru.job4j.tracker.model.Item;
 import ru.job4j.tracker.store.HbmTracker;
 
@@ -15,45 +9,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TrackerHbmTest {
-    private static SessionFactory sessionFactory = null;
-    private Session session = null;
-
-    @BeforeAll
-    static void setup() {
-        try {
-            StandardServiceRegistry standardRegistry
-                    = new StandardServiceRegistryBuilder()
-                    .configure("hibernate.cfg.xml")
-                    .build();
-
-            Metadata metadata = new MetadataSources(standardRegistry)
-                    .addAnnotatedClass(Item.class)
-                    .getMetadataBuilder()
-                    .build();
-
-            sessionFactory = metadata
-                    .getSessionFactoryBuilder().build();
-
-        } catch (Throwable ex) {
-            throw new ExceptionInInitializerError(ex);
-        }
-    }
-
-    @BeforeEach
-    void setupThis() {
-        session = sessionFactory.openSession();
-        session.beginTransaction();
-    }
-
-    @AfterEach
-    void tearThis() {
-        session.getTransaction().commit();
-    }
-
-    @AfterAll
-    static void tear() {
-        sessionFactory.close();
-    }
 
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() throws Exception {
