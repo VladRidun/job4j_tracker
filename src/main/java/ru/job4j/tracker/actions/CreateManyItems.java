@@ -1,30 +1,23 @@
 package ru.job4j.tracker.actions;
 
-import ru.job4j.tracker.store.Store;
 import ru.job4j.tracker.input.Input;
 import ru.job4j.tracker.model.Item;
-import ru.job4j.tracker.output.Output;
+import ru.job4j.tracker.store.Store;
 
 public class CreateManyItems implements UserAction {
-    private final Output out;
-
-    public CreateManyItems(Output out) {
-        this.out = out;
-    }
 
     @Override
     public String name() {
-        return "Create many items";
+        return "=== Create many items ===";
     }
 
     @Override
     public boolean execute(Input input, Store tracker) {
-        out.println("=== Create many items ===");
         int count = input.askInt("Введите кол-во заявок ");
         for (int i = 0; i < count; i++) {
             tracker.add(new Item("Заявка № " + i));
         }
-        out.println("Добавлено заявок: " + count);
+        System.out.println("Добавлено заявок: " + count);
         return true;
     }
 
