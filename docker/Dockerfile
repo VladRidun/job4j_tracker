@@ -4,7 +4,7 @@ RUN mkdir job4j_tracker
 
 WORKDIR job4j_tracker
 
-COPY . .
+COPY .. .
 
 RUN mvn package -Dmaven.test.skip=true
 
